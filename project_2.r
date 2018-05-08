@@ -52,3 +52,16 @@ solve.ols<-function(X,y, verb=1){
 
 MSE=mse(error)
 MSE
+
+## Linear Regression
+
+colnames(train) <- c('V51','V52','V53','V54','V56','V57','V58','V59',"Target")
+head(train)
+head(Test_A)
+Model<- lm(formula = Target ~ .,data = data.frame(train))
+Prediction <- predict(Model,Test_A,se.fit = TRUE)
+summary(Model)
+Prediction$fit
+error_1 <- (Test_B - Prediction$fit)
+msError=mse(error_1)
+msError
